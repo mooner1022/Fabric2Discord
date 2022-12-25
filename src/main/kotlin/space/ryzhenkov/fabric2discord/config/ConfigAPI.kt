@@ -101,6 +101,11 @@ object ConfigAPI : ConfigContainer {
         }
 
         @ConfigEntry(
+            comment = "Prefix for sending messages from Minecraft to Discord"
+        )
+        var prefix = ""
+
+        @ConfigEntry(
             comment = "Formatting for messages from Discord\n" + "Custom placeholders: %discord_user%, %discord_tag%\n" + "Supports SERVER placeholders"
         )
         var format = "[<color:4ae485>F2D</color>] %discord_user%<gray>#%discord_tag%</gray>: "

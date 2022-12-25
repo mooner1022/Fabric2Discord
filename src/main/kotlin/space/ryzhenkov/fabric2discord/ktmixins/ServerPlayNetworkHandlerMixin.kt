@@ -11,8 +11,14 @@ object ServerPlayNetworkHandlerMixin {
     fun onPlayerMessageEvent(player: ServerPlayerEntity, signedMessage: SignedMessage) {
         if (!ConfigAPI.messages.chatMessage.enabled) return
 
+        var message = signedMessage.content.string
+        if (ConfigAPI.messages.prefix.isNotBlank()) {
+            if (!message.startsWith(ConfigAPI.messages.prefix))
+                return
+            message = message.drop(ConfigAPI.messages.prefix.length)
+        }
         val replacements = hashMapOf<String, String>()
-        replacements["message"] = signedMessage.content.string
+        replacements["message"] = message
 
         if (ConfigAPI.general.ids.getWebhookOrNull() != null) {
             KordInstance.executeWebhook(

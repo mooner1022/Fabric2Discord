@@ -36,7 +36,7 @@ class F2D : ModInitializer {
                             KordInstance.kord.getChannelOf<TextChannel>(ConfigAPI.general.ids.getChatChannelOrNull()!!)!!
                                 .createWebhook(
                                     "Fabric2Discord Webhook"
-                                ) { this.name = "Fabric2Discord" }
+                                ) { this.name = "Minecraft" } // Discord username restricted from containing the word 'discord'
                         ConfigAPI.general.ids.webhook = webhook.id.value.toLong()
 
                         config.save()
